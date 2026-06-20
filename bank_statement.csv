@@ -1,0 +1,64 @@
+date,description,category,debit,credit,balance
+2026-01-01,Salary Credit,Salary,0,45000,95000
+2026-01-02,Entertainment,Entertainment,6620,0,88380
+2026-01-03,Utilities,Utilities,7149,0,81231
+2026-01-08,EMI,EMI,3088,0,78143
+2026-01-09,EMI,EMI,3371,0,74772
+2026-01-11,Rent,Rent,674,0,74098
+2026-01-13,Groceries,Groceries,2591,0,71507
+2026-01-13,Utilities,Utilities,4858,0,66649
+2026-01-16,Entertainment,Entertainment,1060,0,65589
+2026-01-16,Utilities,Utilities,7301,0,58288
+2026-01-17,Entertainment,Entertainment,2947,0,55341
+2026-01-19,Entertainment,Entertainment,2261,0,53080
+2026-01-20,Food & Dining,Food & Dining,3756,0,49324
+2026-01-22,Food & Dining,Food & Dining,5391,0,43933
+2026-01-22,Food & Dining,Food & Dining,1885,0,42048
+2026-01-23,Entertainment,Entertainment,3585,0,38463
+2026-01-24,Groceries,Groceries,666,0,37797
+2026-01-25,Food & Dining,Food & Dining,5778,0,32019
+2026-01-26,EMI,EMI,5043,0,26976
+2026-01-26,Entertainment,Entertainment,7175,0,19801
+2026-01-26,Groceries,Groceries,2635,0,17166
+2026-02-01,Salary Credit,Salary,0,45000,62166
+2026-02-02,Rent,Rent,5663,0,56503
+2026-02-03,Groceries,Groceries,5875,0,50628
+2026-02-05,Utilities,Utilities,5425,0,45203
+2026-02-05,Groceries,Groceries,2181,0,43022
+2026-02-07,Entertainment,Entertainment,3273,0,39749
+2026-02-08,Entertainment,Entertainment,5686,0,34063
+2026-02-09,Entertainment,Entertainment,2756,0,31307
+2026-02-09,Entertainment,Entertainment,1785,0,29522
+2026-02-14,Rent,Rent,5059,0,24463
+2026-02-16,Utilities,Utilities,5111,0,19352
+2026-02-16,EMI,EMI,537,0,18815
+2026-02-16,Rent,Rent,5476,0,13339
+2026-02-18,Food & Dining,Food & Dining,6549,0,6790
+2026-02-19,Utilities,Utilities,1700,0,5090
+2026-02-21,EMI,EMI,7241,0,-2151
+2026-02-22,Utilities,Utilities,6639,0,-8790
+2026-02-26,Utilities,Utilities,3998,0,-12788
+2026-02-26,EMI,EMI,264,0,-13052
+2026-02-27,Groceries,Groceries,3024,0,-16076
+2026-02-27,EMI,EMI,5087,0,-21163
+2026-03-01,Salary Credit,Salary,0,45000,23837
+2026-03-02,Food & Dining,Food & Dining,4714,0,19123
+2026-03-02,Utilities,Utilities,1770,0,17353
+2026-03-02,Utilities,Utilities,2890,0,14463
+2026-03-05,Rent,Rent,763,0,13700
+2026-03-06,Utilities,Utilities,6047,0,7653
+2026-03-08,Groceries,Groceries,6384,0,1269
+2026-03-08,Food & Dining,Food & Dining,7942,0,-6673
+2026-03-09,Food & Dining,Food & Dining,2931,0,-9604
+2026-03-10,Utilities,Utilities,1070,0,-10674
+2026-03-11,Food & Dining,Food & Dining,6092,0,-16766
+2026-03-12,EMI,EMI,1878,0,-18644
+2026-03-13,Rent,Rent,6159,0,-24803
+2026-03-14,Groceries,Groceries,7921,0,-32724
+2026-03-14,EMI,EMI,1259,0,-33983
+2026-03-16,Food & Dining,Food & Dining,6956,0,-40939
+2026-03-17,Groceries,Groceries,3304,0,-44243
+2026-03-18,Food & Dining,Food & Dining,5818,0,-50061
+2026-03-24,EMI,EMI,7585,0,-57646
+2026-03-24,Utilities,Utilities,6828,0,-64474
+2026-03-25,Entertainment,Entertainment,2895,0,-67369
