@@ -4,6 +4,10 @@ A RAG-powered personal finance assistant that parses real bank statement PDFs an
 
 Built as a portfolio project to demonstrate Retrieval-Augmented Generation (RAG) applied to a real-world financial use case — combining document parsing, vector search, and LLM reasoning with practical analytics.
 
+
+
+**🔗 Live Demo:** [banksense-ai-jegajeevan1410.streamlit.app](https://banksense-ai-jegajeevan1410.streamlit.app)
+
 ---
 
 ## Features
