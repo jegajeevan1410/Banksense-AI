@@ -9,7 +9,7 @@ from rag_utils import retrieve_rules
 from pdf_parser import parse_bank_statement_pdf, clean_statement_df, map_to_standard_format
 
 load_dotenv()
-groq_key = os.getenv("GROQ_API_KEY")
+groq_key = os.getenv("GROQ_API_KEY") or st.secrets.get("GROQ_API_KEY")
 
 if not groq_key:
     st.error("GROQ_API_KEY not found! Check your .env file.")
