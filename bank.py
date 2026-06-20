@@ -44,6 +44,12 @@ Instructions:
   the user specifically asks you to assess risk.
 - Use ₹ for all amounts, formatted with commas (e.g. ₹1,05,353.12)
 - Keep answers concise.
+- If the exact information the user asks for is NOT in the data above (e.g. a specific
+  category that doesn't appear in "Spending by Category"), say so directly in one sentence
+  — for example: "I don't see a 'Food and Dining' category in your data; the categories
+  available are: [list them]." Do NOT invent hypothetical questions, fake Q&A pairs, or
+  unrelated generic advice.
+- Never simulate a conversation or generate questions on the user's behalf.
 """)
 
 st.set_page_config(page_title="BankSense AI", layout="wide")
@@ -110,11 +116,25 @@ savings_rate = round((net_savings / total_income) * 100, 1) if total_income > 0 
 num_months = max(df["date"].str[:7].nunique(), 1)
 
 if len(spend) > 0:
-    top_category = spend.sort_values('debit', ascending=False).iloc[0]['category']
-    top_category_amount = spend.sort_values('debit', ascending=False).iloc[0]['debit']
+    spend_sorted = spend.sort_values('debit', ascending=False)
+    top_category = spend_sorted.iloc[0]['category']
+    top_category_amount = spend_sorted.iloc[0]['debit']
+    category_breakdown = "\n".join(
+        f"    {row['category']}: ₹{row['debit']:,.2f}"
+        for _, row in spend_sorted.iterrows()
+    )
 else:
     top_category = "N/A"
     top_category_amount = 0
+    category_breakdown = "    No category data available"
+
+monthly_breakdown = df.groupby(df["date"].str[:7]).agg(
+    debit=("debit", "sum"), credit=("credit", "sum")).reset_index()
+
+monthly_lines = "\n".join(
+    f"    {row['date']}: Debit ₹{row['debit']:,.2f}, Credit ₹{row['credit']:,.2f}"
+    for _, row in monthly_breakdown.iterrows()
+)
 
 with tab1:
     fin_summary = f"""
@@ -124,7 +144,12 @@ with tab1:
     Savings Rate: {savings_rate}%
     Average Monthly Income: ₹{total_income/num_months:,.0f}
     Average Monthly Expenses: ₹{total_spend/num_months:,.0f}
-    Top Spending Category: {top_category} (₹{top_category_amount:,.2f})
+
+    Spending by Category:
+{category_breakdown}
+
+    Month-by-month breakdown:
+{monthly_lines}
     """
 
     query = st.text_input("Ask about your finances or loan eligibility:")
