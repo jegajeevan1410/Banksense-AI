@@ -22,7 +22,8 @@ llm = ChatGroq(
 
 
 prompt = PromptTemplate.from_template("""
-You are a personal finance AI assistant. Here is the user's financial summary:
+You are a precise personal finance AI assistant. Here is the user's financial summary,
+with clearly labeled figures:
 
 {financial_summary}
 
@@ -31,7 +32,18 @@ Relevant banking rules and guidelines:
 
 User question: {query}
 
-Give a clear, helpful, personalized answer. Use ₹ for amounts.
+Instructions:
+- Use ONLY the exact labeled figures above (Total Debit, Total Credit, Net Savings, etc.)
+- Do not confuse "Total Debit" with "Net Savings" — they are different numbers
+- If the user asks for a SPECIFIC FIGURE (e.g. "what's my debit sum", "what's my balance"),
+  answer with ONLY that number in one short sentence. Do not add analysis, warnings,
+  or recommendations unless the user explicitly asks for advice or analysis.
+- If the user asks for ADVICE or ANALYSIS (e.g. "how am I doing financially", "should I be worried"),
+  then you may provide context using the retrieved guidelines.
+- Never use alarming language ("challenging financial situation", "major concern") unless
+  the user specifically asks you to assess risk.
+- Use ₹ for all amounts, formatted with commas (e.g. ₹1,05,353.12)
+- Keep answers concise.
 """)
 
 st.set_page_config(page_title="BankSense AI", layout="wide")
@@ -93,18 +105,26 @@ with tab2:
 
 total_income = df["credit"].sum()
 total_spend = df["debit"].sum()
-savings_rate = round((total_income - total_spend) / total_income * 100, 1)
+net_savings = total_income - total_spend
+savings_rate = round((net_savings / total_income) * 100, 1) if total_income > 0 else 0
+num_months = max(df["date"].str[:7].nunique(), 1)
+
 if len(spend) > 0:
     top_category = spend.sort_values('debit', ascending=False).iloc[0]['category']
+    top_category_amount = spend.sort_values('debit', ascending=False).iloc[0]['debit']
 else:
     top_category = "N/A"
+    top_category_amount = 0
 
 with tab1:
     fin_summary = f"""
-    Monthly income: ₹{total_income/3:,.0f}
-    Monthly expenses: ₹{total_spend/3:,.0f}
-    Savings rate: {savings_rate}%
-    Top spending: {top_category}
+    Total Debit (all money spent/withdrawn): ₹{total_spend:,.2f}
+    Total Credit (all money received): ₹{total_income:,.2f}
+    Net Savings (Total Credit - Total Debit): ₹{net_savings:,.2f}
+    Savings Rate: {savings_rate}%
+    Average Monthly Income: ₹{total_income/num_months:,.0f}
+    Average Monthly Expenses: ₹{total_spend/num_months:,.0f}
+    Top Spending Category: {top_category} (₹{top_category_amount:,.2f})
     """
 
     query = st.text_input("Ask about your finances or loan eligibility:")
